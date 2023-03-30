@@ -1,7 +1,7 @@
 use std::fmt::{Debug, Error, Formatter};
 
 pub enum Expr {
-    Number(i32),
+    Number(f64),
     Op(Box<Expr>, Opcode, Box<Expr>),
     Error,
 }
