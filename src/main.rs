@@ -1,3 +1,9 @@
+//TODO: More Error Handling
+//      User Interface
+
+
+
+
 #[macro_use]
 extern crate lalrpop_util;
 use ast::{Expr, Opcode};
@@ -17,22 +23,18 @@ fn evaluate(expr: &ast::Expr) -> MathResult {
         Expr::Number(n) => Ok(*n),
         Expr::Op(left, opcode, right) => match opcode {
             Opcode::Add => {
-                println!("add");
                 Ok(evaluate(&left)? + evaluate(&right)?)
             }
             Opcode::Div => {
-                println!("div");
                 if evaluate(&right)? == 0 {
                     return Err(Errors::DivByZero);
                 }
                 return Ok(evaluate(&left)? / evaluate(&right)?);
             }
             Opcode::Mul => {
-                println!("mul");
                 Ok(evaluate(&left)? * evaluate(&right)?)
             }
             Opcode::Sub => {
-                println!("sub");
                 Ok(evaluate(&left)? - evaluate(&right)?)
             }
         },
